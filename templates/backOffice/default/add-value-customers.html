@@ -1,0 +1,9 @@
+<td>
+{loop name="customer_status" type="customer-validation" id={$customer_id} limit=1}
+    <span class="label label-{if $STATUS>2}danger{else}{if $STATUS==2}success{else}default{/if}{/if}">
+    {loop name="customer_status_title" type="customer-validation-status" id={$STATUS} limit=1}
+    {$TITLE}
+    {/loop}
+    </span>
+{/loop}
+</td>

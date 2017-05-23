@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+  <!--
+
+    if a /admin/module/customervalidation/ route is provided, a "Configuration" button will be displayed
+    for the module in the module list. Clicking this button will invoke this route.
+
+    <route id="my_route_id" path="/admin/module/customervalidation">
+        <default key="_controller">CustomerValidation\Full\Class\Name\Of\YourConfigurationController::methodName</default>
+    </route>
+
+    <route id="my_route_id" path="/admin/module/customervalidation/route-name">
+        <default key="_controller">CustomerValidation\Full\Class\Name\Of\YourAdminController::methodName</default>
+    </route>
+
+    <route id="my_route_id" path="/my/route/name">
+        <default key="_controller">CustomerValidation\Full\Class\Name\Of\YourOtherController::methodName</default>
+    </route>
+
+    ...add as many routes as required.
+
+    <route>
+    ...
+    </route>
+    -->
+  <route id="customervalidation.customer_validation.list" path="/admin/module/CustomerValidation/customer_validation" methods="get">
+    <default key="_controller">CustomerValidation:CustomerValidation:default</default>
+  </route>
+  <route id="customervalidation.customer_validation.create" path="/admin/module/CustomerValidation/customer_validation" methods="post">
+    <default key="_controller">CustomerValidation:CustomerValidation:create</default>
+  </route>
+  <route id="customervalidation.customer_validation.view" path="/admin/module/CustomerValidation/customer_validation/edit" methods="get">
+    <default key="_controller">CustomerValidation:CustomerValidation:update</default>
+  </route>
+  <route id="customervalidation.customer_validation.edit" path="/admin/module/CustomerValidation/customer_validation/edit" methods="post">
+    <default key="_controller">CustomerValidation:CustomerValidation:processUpdate</default>
+  </route>
+  <route id="customervalidation.customer_validation.delete" path="/admin/module/CustomerValidation/customer_validation/delete" methods="post">
+    <default key="_controller">CustomerValidation:CustomerValidation:delete</default>
+  </route>
+  <route id="customervalidation.customer_validation_status.list" path="/admin/module/CustomerValidation/customer_validation_status" methods="get">
+    <default key="_controller">CustomerValidation:CustomerValidationStatus:default</default>
+  </route>
+  <route id="customervalidation.customer_validation_status.create" path="/admin/module/CustomerValidation/customer_validation_status" methods="post">
+    <default key="_controller">CustomerValidation:CustomerValidationStatus:create</default>
+  </route>
+  <route id="customervalidation.customer_validation_status.view" path="/admin/module/CustomerValidation/customer_validation_status/edit" methods="get">
+    <default key="_controller">CustomerValidation:CustomerValidationStatus:update</default>
+  </route>
+  <route id="customervalidation.customer_validation_status.edit" path="/admin/module/CustomerValidation/customer_validation_status/edit" methods="post">
+    <default key="_controller">CustomerValidation:CustomerValidationStatus:processUpdate</default>
+  </route>
+  <route id="customervalidation.customer_validation_status.delete" path="/admin/module/CustomerValidation/customer_validation_status/delete" methods="post">
+    <default key="_controller">CustomerValidation:CustomerValidationStatus:delete</default>
+  </route>
+</routes>

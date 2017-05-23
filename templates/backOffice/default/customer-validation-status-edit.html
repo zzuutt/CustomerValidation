@@ -1,0 +1,136 @@
+{extends file="admin-layout.tpl"}
+{default_translation_domain domain='customervalidation.bo.default'}
+
+{block name="no-return-functions"}
+    {$admin_current_location = 'tools'}
+{/block}
+
+{block name="page-title"}{intl l='CustomerValidationStatus'}{/block}
+
+{block name="check-resource"}admin.module{/block}
+{block name="check-access"}update{/block}
+{block name="check-module"}CustomerValidation{/block}
+
+{block name="main-content"}
+
+    {form name="customer_validation_status.update"}
+        <div id="wrapper" class="container">
+
+            {if $form_error}
+                <div class="alert alert-danger">{$form_error_message}</div>
+            {/if}
+
+            <div class="general-block-decorator">
+                <div class="title title-without-tabs">
+                    {intl l="CustomerValidationStatus edit" d="customervalidation.bo.default"}
+                </div>
+
+                <div class="form-container">
+                    <form method="POST" action="{$current_url}" {form_enctype form=$form} class="clearfix" >
+
+                        {include "includes/inner-form-toolbar.html"
+                        close_url = {url path="/admin/module/CustomerValidation/customer_validation_status"}
+                        }
+
+                        {form_field form=$form field="id"}
+                        {assign "customer_validation_status_id" $value}
+                            <input type="hidden" name="{$name}" value="{$value}"/>
+                        {/form_field}
+                        {form_field form=$form field="locale"}
+                            <input type="hidden" name="{$name}" value="{$edit_language_locale}"/>
+                        {/form_field}
+                        {form_field form=$form field="success_url"}
+                            <input type="hidden" name="{$name}" value="{url path='/admin/module/CustomerValidation'}/customer_validation_status"/>
+                        {/form_field}
+                        {form_hidden_fields form=$form}
+
+                        {loop name="customer_validation_status_update" type="customer-validation-status" backend_context="yes" id=$customer_validation_status_id lang=$edit_language_id}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {form_field form=$form field="code"}
+                                        <div class="form-group">
+                                            <label class="control-label" for="{$label_attr.for}">
+                                                {$label}
+                                                {if $required}<span class="required">*</span>{/if}
+                                            </label>
+
+                                            {form_error form=$form field="code"}{$message}{/form_error}
+
+                                                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$CODE}" placeholder="{intl l='The CustomerValidationStatus code'}" />
+                                        </div>
+                                    {/form_field}
+                                    {form_field form=$form field="title"}
+                                        <div class="form-group">
+                                            <label class="control-label" for="{$label_attr.for}">
+                                                {$label}
+                                                {if $required}<span class="required">*</span>{/if}
+                                            </label>
+
+                                            {form_error form=$form field="title"}{$message}{/form_error}
+
+                                                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$TITLE}" placeholder="{intl l='The CustomerValidationStatus title'}" />
+                                        </div>
+                                    {/form_field}
+                                    {form_field form=$form field="description"}
+                                        <div class="form-group">
+                                            <label class="control-label" for="{$label_attr.for}">
+                                                {$label}
+                                                {if $required}<span class="required">*</span>{/if}
+                                            </label>
+
+                                            {form_error form=$form field="description"}{$message}{/form_error}
+
+                                                <textarea class="form-control" name="{$name}" id="{$label_attr.for}" placeholder="{intl l='The CustomerValidationStatus description'}">{$DESCRIPTION}</textarea>
+                                        </div>
+                                    {/form_field}
+                                    {form_field form=$form field="chapo"}
+                                        <div class="form-group">
+                                            <label class="control-label" for="{$label_attr.for}">
+                                                {$label}
+                                                {if $required}<span class="required">*</span>{/if}
+                                            </label>
+
+                                            {form_error form=$form field="chapo"}{$message}{/form_error}
+
+                                                <textarea class="form-control" name="{$name}" id="{$label_attr.for}" placeholder="{intl l='The CustomerValidationStatus chapo'}">{$CHAPO}</textarea>
+                                        </div>
+                                    {/form_field}
+                                    {form_field form=$form field="postscriptum"}
+                                        <div class="form-group">
+                                            <label class="control-label" for="{$label_attr.for}">
+                                                {$label}
+                                                {if $required}<span class="required">*</span>{/if}
+                                            </label>
+
+                                            {form_error form=$form field="postscriptum"}{$message}{/form_error}
+
+                                                <textarea class="form-control" name="{$name}" id="{$label_attr.for}" placeholder="{intl l='The CustomerValidationStatus postscriptum'}">{$POSTSCRIPTUM}</textarea>
+                                        </div>
+                                    {/form_field}
+
+                                    {include "includes/inner-form-toolbar.html"
+                                        hide_flags = true
+                                        close_url = {url path="/admin/module/CustomerValidation/customer_validation_status"}
+                                    }
+
+                                    <small>
+                                        {intl
+                                            l="CustomerValidationStatus created on %created_at. Last modification: %updated_at"
+                                            created_at={format_date date=$CREATE_DATE}
+                                            updated_at={format_date date=$UPDATE_DATE}
+                                            d="customervalidation.bo.default"
+                                        }
+                                    </small>
+                                </div>
+                            </div>
+                        {/loop}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    {/form}
+{/block}
+
+{block name="javascript-initialization"}
+{/block}

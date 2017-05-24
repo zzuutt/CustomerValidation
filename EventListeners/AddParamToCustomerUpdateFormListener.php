@@ -12,6 +12,7 @@ use Thelia\Action\BaseAction;
 use Thelia\Core\Event\TheliaEvents;
 use Thelia\Core\Event\TheliaFormEvent;
 use Thelia\Core\Event\Customer\CustomerCreateOrUpdateEvent;
+use Thelia\Core\Event\Customer\CustomerEvent;
 use Thelia\Core\HttpFoundation\Request;
 use Thelia\Core\Translation\Translator;
 
@@ -32,6 +33,11 @@ class AddParamToCustomerUpdateFormListener extends BaseAction implements EventSu
         $this->traiterChampSupplementaire($event, 'thelia_customer_update');
     }
 
+    public function createCustomer(CustomerEvent $event)
+    {
+        $this->addCustomerValidation($event);
+    }
+
     protected function traiterChampSupplementaire(CustomerCreateOrUpdateEvent $event, $formName)
     {
 
@@ -49,11 +55,38 @@ class AddParamToCustomerUpdateFormListener extends BaseAction implements EventSu
                 ->setStatus($ChampStatus)
             ;
         }
+        else {
+            $customerValidationModel
+                ->setStatus(1)
+            ;
+        }
         $customerValidationModel
             ->save()
         ;
 
     }
+
+    protected function addCustomerValidation(CustomerEvent $event)
+    {
+
+        $customer_id = $event->getCustomer()->getId();
+
+        $customerValidationModel = CustomerValidationQuery::create()->findOneById($customer_id);
+        if (null === $customerValidationModel) {
+            $customerValidationModel = new CustomerValidationModel();
+            $customerValidationModel->setId($customer_id);
+
+            $customerValidationModel
+                ->setStatus(1)
+            ;
+
+            $customerValidationModel
+                ->save()
+            ;
+        }
+
+    }
+
 
     public function ajouterChampFormulaire(TheliaFormEvent $event)
     {
@@ -105,6 +138,7 @@ class AddParamToCustomerUpdateFormListener extends BaseAction implements EventSu
         return [
             TheliaEvents::FORM_BEFORE_BUILD . ".thelia_customer_update" => ['ajouterChampFormulaire', 128],
             TheliaEvents::CUSTOMER_UPDATEACCOUNT => array("updateCustomer", 10),
+            TheliaEvents::AFTER_CREATECUSTOMER => array("createCustomer", 10),
         ];
     }
 }

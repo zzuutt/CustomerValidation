@@ -5,10 +5,10 @@ SELECT @max_id := IFNULL(MAX(`id`),0) FROM `customer_validation_status`;
 INSERT INTO `customer_validation_status` (`id`, `code`, `created_at`, `updated_at`) VALUES
   (@max_id + 1, 'waiting', NULL, NULL),
   (@max_id + 2, 'valid', NULL, NULL),
-  (@max_id + 2, 'refuse', NULL, NULL)
+  (@max_id + 3, 'refuse', NULL, NULL)
 ;
 
-INSERT INTO `customer_validation_status_i18n` (`id`, `locale`, `title`, `description`, `chapo`) VALUES
+INSERT INTO `customer_validation_status_i18n` (`id`, `locale`, `title`, `description`, `chapo`, `postscriptum`) VALUES
   (@max_id + 1, 'en_EN','Waiting', '', '', ''),
   (@max_id + 2, 'en_EN','Valid', '', '', ''),
   (@max_id + 3, 'en_EN','Refuse', '', '', ''),

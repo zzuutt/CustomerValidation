@@ -78,10 +78,10 @@ class SendMail implements EventSubscriberInterface
 
                 $this->mailer->send($instance);
 
-                Tlog::getInstance()->debug("Customer Validation message sent to customer ".$customer->getEmail());
+                Tlog::getInstance()->alert("Customer Validation message sent to customer ".$customer->getEmail());
             }
             else {
-                 Tlog::getInstance()->debug("Customer Validation message no contact email customer_id", $customer->getId());
+                 Tlog::getInstance()->error("Customer Validation message no contact email customer_id", $customer->getId());
             }
         }
     }

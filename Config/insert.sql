@@ -1,3 +1,5 @@
+# This is a fix for InnoDB in MySQL >= 4.1.x
+# It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
 SELECT @max_id := IFNULL(MAX(`id`),0) FROM `customer_validation_status`;

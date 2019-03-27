@@ -9,9 +9,9 @@ INSERT INTO `customer_validation_status` (`id`, `code`, `created_at`, `updated_a
 ;
 
 INSERT INTO `customer_validation_status_i18n` (`id`, `locale`, `title`, `description`, `chapo`, `postscriptum`) VALUES
-  (@max_id + 1, 'en_EN','Waiting', '', '', ''),
-  (@max_id + 2, 'en_EN','Valid', '', '', ''),
-  (@max_id + 3, 'en_EN','Refuse', '', '', ''),
+  (@max_id + 1, 'en_US','Waiting', '', '', ''),
+  (@max_id + 2, 'en_US','Valid', '', '', ''),
+  (@max_id + 3, 'en_US','Refuse', '', '', ''),
   (@max_id + 1, 'fr_FR','En attente', '', '', ''),
   (@max_id + 2, 'fr_FR','Validé', '', '', ''),
   (@max_id + 3, 'fr_FR','Refusé', '', '', '')

@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `customer_validation`
 -- ---------------------------------------------------------------------
 -- customer_validation_status
 -- ---------------------------------------------------------------------
-
+DROP TABLE IF EXISTS `customer_validation_status`;
 CREATE TABLE IF NOT EXISTS `customer_validation_status`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `customer_validation_status`
 -- ---------------------------------------------------------------------
 -- customer_validation_status_i18n
 -- ---------------------------------------------------------------------
-
+DROP TABLE IF EXISTS `customer_validation_status_i18n`;
 CREATE TABLE IF NOT EXISTS `customer_validation_status_i18n`
 (
     `id` INTEGER NOT NULL,
